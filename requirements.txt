@@ -4,4 +4,6 @@ psutil>=5.8.0
 memory_profiler>=0.58.0
 zlib>=1.2.11
 pytest>=6.2.5
-typing-extensions>=3.10.0 
+typing-extensions>=3.10.0
+requests>=2.26.0
+tqdm>=4.62.3 

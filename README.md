@@ -1,25 +1,31 @@
 # Search Engine Components Implementation
 
-This project implements core search engine components including a Trie data structure for autocomplete, an Inverted Index for full-text search, and a Ranking Heap for result scoring.
+This project implements a full-featured search engine with Wikipedia article search capabilities, combining Trie data structure for autocomplete, Inverted Index for full-text search, and a Ranking Heap for result scoring.
 
 ## Features
 
-### Trie Implementation
+### Search Engine (main.py)
+- Wikipedia article search and indexing
+- Full-text search with TF-IDF scoring
+- Phrase search capabilities
+- Query autocomplete suggestions
+- Interactive command-line interface
+- Progress tracking for article loading
+
+### Core Components
+#### Trie Implementation
 - Path compression for memory efficiency
 - LRU caching for frequent searches
 - Case-insensitive search
 - Autocomplete functionality
-- Memory usage optimization
 
-### Inverted Index
+#### Inverted Index
 - Sharded storage for scalability
 - Parallel processing with multi-threading
 - Memory-efficient storage with disk offloading
 - TF-IDF scoring for search relevance
-- Phrase search capabilities
-- Compressed storage using zlib
 
-### Ranking Heap
+#### Ranking Heap
 - Efficient top-K results retrieval
 - LRU result caching
 - Memory-bounded operation
@@ -28,23 +34,69 @@ This project implements core search engine components including a Trie data stru
 ## Installation
 
 1. Clone the repository:
-```bash
-git clone <repository-url>
-cd search-engine-components
-```
 
-2. Create a virtual environment (recommended):
-```bash
+bash
+git clone https://github.com/yourusername/search-engine.git
+cd search-engine
+
+2. Create and activate virtual environment:
+
+bash
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+source venv/bin/activate # On Windows: venv\Scripts\activate
 
 3. Install dependencies:
-```bash
+
+bash
 pip install -r requirements.txt
-```
 
 ## Usage
+
+### Running the Search Engine
+
+bash
+python main.py
+
+This will:
+1. Load 100 random Wikipedia articles
+2. Start an interactive search interface
+3. Allow you to:
+   - Perform full-text searches
+   - Search for exact phrases
+   - Get autocomplete suggestions
+
+### Search Interface Options
+1. **Search**: Full-text search with ranked results
+2. **Phrase Search**: Find exact matches of phrases
+3. **Autocomplete**: Get search suggestions as you type
+4. **Exit**: Close the application
+
+### Example Usage
+```
+Search Engine Interface
+1. Search
+2. Phrase Search
+3. Autocomplete
+4. Exit
+
+Enter your choice (1-4): 1
+Enter search query: python programming
+Found 3 results:
+1. Introduction to Python
+   Python is a high-level programming language...
+
+2. Programming Paradigms
+   Python supports multiple programming paradigms...
+```
+
+## Performance Monitoring
+
+The project includes comprehensive performance analysis tools:
+- Memory usage tracking
+- Execution time measurements
+- Scalability testing
+- Performance visualization
+
 
 ### Running Tests
 ```bash
@@ -60,65 +112,21 @@ python -m unittest test_heap.py -v
 ```bash
 # Run performance benchmarks
 python benchmark_trie.py
-python performance_analysis.py
+python performance_analysis_inverted_index.py
+python heap_performance.py
 ```
-
-### Example Usage
-
-```python
-# Using the Trie for autocomplete
-from tire import Trie
-
-trie = Trie()
-trie.insert("hello")
-trie.insert("help")
-trie.insert("world")
-
-results = trie.autocomplete("he", limit=5)
-print(results)  # ['hello', 'help']
-
-# Using the Inverted Index for search
-from inverted_index import InvertedIndex
-
-index = InvertedIndex()
-documents = [
-    (1, "the quick brown fox"),
-    (2, "jumps over the lazy dog")
-]
-index.add_documents(iter(documents))
-
-results = index.search("quick brown")
-print(results)  # [(1, score)]
-
-# Using the Ranking Heap
-from heap import RankingHeap
-
-heap = RankingHeap(cache_size=100)
-heap.add_page(0.8, "page1")
-heap.add_page(0.9, "page2")
-
-top_results = heap.peek_top_results(2)
-print(top_results)  # ['page2', 'page1']
-```
-
-## Performance Monitoring
-
-The project includes comprehensive performance analysis tools:
-- Memory usage tracking
-- Execution time measurements
-- Scalability testing
-- Performance visualization
 
 View generated performance graphs in:
 - `performance_analysis.png`
 - `insert_time_comparison.png`
 - `search_time_comparison.png`
 - `memory_comparison.png`
+- `heap_performance.png`
 
 ## Project Structure
-
 ```
 .
+├── main.py                    # Search engine implementation with Wikipedia integration
 ├── tire.py                    # Trie implementation
 ├── inverted_index.py          # Inverted index implementation
 ├── heap.py                    # Ranking heap implementation
@@ -129,4 +137,14 @@ View generated performance graphs in:
 ├── performance_analysis.py    # Overall performance analysis
 └── requirements.txt          # Project dependencies
 ```
+
+## Dependencies
+- matplotlib: Visualization
+- numpy: Numerical operations
+- psutil: System monitoring
+- memory_profiler: Memory analysis
+- requests: Wikipedia API access
+- tqdm: Progress bars
+- pytest: Testing
+
 
