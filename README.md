@@ -35,27 +35,31 @@ This project implements a full-featured search engine with Wikipedia article sea
 
 1. Clone the repository:
 
-bash
-git clone https://github.com/yourusername/search-engine.git
-cd search-engine
+```bash
+git clone https://github.com/sbhandari30903/MSCS532_Project
+cd MSCS532_Project
+```
 
 2. Create and activate virtual environment:
 
-bash
+```bash
 python -m venv venv
 source venv/bin/activate # On Windows: venv\Scripts\activate
+```
 
 3. Install dependencies:
 
-bash
+```bash
 pip install -r requirements.txt
+```
 
 ## Usage
 
 ### Running the Search Engine
 
-bash
+```bash
 python main.py
+```
 
 This will:
 1. Load 100 random Wikipedia articles
