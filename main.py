@@ -180,7 +180,7 @@ class SearchInterface:
     def run(self):
         """Run the interactive search interface"""
         # Load Wikipedia articles
-        self.load_wikipedia_articles(limit=1000)
+        self.load_wikipedia_articles(limit=100)
         
         while True:
             print("\nSearch Engine Interface")
